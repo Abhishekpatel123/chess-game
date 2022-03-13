@@ -12,12 +12,35 @@ class Pawn {
 
   showMoves(matrix) {
     const positions = [];
+    console.log(this.type)
     console.log(matrix[this.position.y + 1][this.position.x], "tu");
+    if(this.type === 0){
     if (!matrix[this.position.y + 1][this.position.x])
       positions.push({
         x: this.position.x,
         y: this.position.y + 1,
       });
+
+    if (this.position.y == 1) {
+      positions.push({
+        x: this.position.x,
+        y: this.position.y + 2,
+      });
+    }
+  }else{
+    if (!matrix[this.position.y - 1][this.position.x])
+      positions.push({
+        x: this.position.x,
+        y: this.position.y - 1,
+      });
+
+    if (this.position.y == 6) {
+      positions.push({
+        x: this.position.x,
+        y: this.position.y - 2,
+      });
+    }
+  }
     return positions;
   }
 

@@ -10,6 +10,15 @@ const Pawn6 = new Pawn(5, 1, team.self, `${team.self}Pawn6`);
 const Pawn7 = new Pawn(6, 1, team.self, `${team.self}Pawn7`);
 const Pawn8 = new Pawn(7, 1, team.self, `${team.self}Pawn8`);
 
+const Pawn9 = new Pawn(0, 6, team.opponent, `${team.opponent}Pawn8`);
+const Pawn10 = new Pawn(1, 6, team.opponent, `${team.opponent}Pawn8`);
+const Pawn11 = new Pawn(2, 6, team.opponent, `${team.opponent}Pawn8`);
+const Pawn12 = new Pawn(3, 6, team.opponent, `${team.opponent}Pawn8`);
+const Pawn13 = new Pawn(4, 6, team.opponent, `${team.opponent}Pawn8`);
+const Pawn14 = new Pawn(5, 6, team.opponent, `${team.opponent}Pawn8`);
+const Pawn15 = new Pawn(6, 6, team.opponent, `${team.opponent}Pawn8`);
+const Pawn16 = new Pawn(7, 6, team.opponent, `${team.opponent}Pawn8`);
+
 const matrix = [
   [0, 0, 0, 0, 0, 0, 0, 0],
   [Pawn1, Pawn2, Pawn3, Pawn4, Pawn5, Pawn6, Pawn7, Pawn8],
@@ -17,7 +26,7 @@ const matrix = [
   [0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0],
+  [Pawn9, Pawn10, Pawn11, Pawn12, Pawn13, Pawn14, Pawn15, Pawn16],
   [0, 0, 0, 0, 0, 0, 0, 0],
 ];
 
@@ -80,7 +89,6 @@ function addListens() {
     cell.addEventListener("click", (e) => {
       const [y, x] = e.target.getAttribute("data-pos").split(" ");
       if (!allPreviewPostion.length) {
-        removeShowPosition();
         if (turn == e.target.getAttribute("data-team")) {
           let result = matrix[y][x].showMoves(matrix);
           currentHighlight = { x, y };
@@ -97,10 +105,12 @@ function addListens() {
         matrix[isTrue.y][isTrue.x] =
           matrix[currentHighlight.y][currentHighlight.x];
         matrix[currentHighlight.y][currentHighlight.x] = 0;
+        turn = !turn;
         draw();
         removeShowPosition();
         return;
       }
+
       removeShowPosition();
     });
   });
