@@ -25,6 +25,7 @@ function draw() {
   matrix.forEach((row, y) => {
     row.forEach((col, x) => {
       Board.children[y].children[x].setAttribute("data-pos", `${y} ${x}`);
+      const img = Board.children[y].children[x].firstElementChild;
       if (col) {
         console.log(col, "inside if comdigon ", x, y);
         Board.children[col.position.y].children[col.position.x].setAttribute(
@@ -35,11 +36,11 @@ function draw() {
           "data-team",
           `${matrix[col.position.y][col.position.x].type}`
         );
+        if (img) return;
         Board.children[col.position.y].children[col.position.x].appendChild(
           insertImage(matrix[col.position.y][col.position.x].image)
         );
       } else {
-        const img = Board.children[y].children[x].firstElementChild;
         if (!img) return;
         Board.children[y].children[x].removeChild(img);
       }
@@ -62,11 +63,11 @@ let currentHighlight = null;
 function showPosition() {
   allPreviewPostion.forEach((pos) => {
     Board.children[pos.y].children[pos.x].classList.add("success");
-    // Board.children[pos.y].children[pos.x].focus();
   });
 }
 
 function removeShowPosition() {
+  console.log(allPreviewPostion, "all pre");
   allPreviewPostion.forEach((item) => {
     Board.children[item.y].children[item.x].classList.remove("success");
   });
@@ -92,15 +93,15 @@ function addListens() {
       // if already preview is present
       let isTrue = allPreviewPostion.find((ele) => ele.y == y && ele.x == x);
       if (isTrue) {
-        // removeShowPosition();
         matrix[currentHighlight.y][currentHighlight.x].move(isTrue);
-        console.log(isTrue, currentHighlight);
         matrix[isTrue.y][isTrue.x] =
           matrix[currentHighlight.y][currentHighlight.x];
         matrix[currentHighlight.y][currentHighlight.x] = 0;
         draw();
+        removeShowPosition();
         return;
       }
+      removeShowPosition();
     });
   });
 
