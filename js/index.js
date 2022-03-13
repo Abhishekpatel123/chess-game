@@ -47,7 +47,7 @@ function draw() {
         );
         if (img) return;
         Board.children[col.position.y].children[col.position.x].appendChild(
-          insertImage(matrix[col.position.y][col.position.x].image)
+          insertImage(matrix[col.position.y][col.position.x].image, col.type)
         );
       } else {
         if (!img) return;
@@ -59,9 +59,12 @@ function draw() {
 
 draw();
 
-function insertImage(url) {
+function insertImage(url, type) {
   const image = document.createElement("img");
   image.src = url;
+  if (type == 1) {
+    image.style.filter = "grayscale(1)";
+  }
   image.style.pointerEvents = "none";
   return image;
 }
