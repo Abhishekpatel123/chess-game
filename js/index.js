@@ -19,8 +19,11 @@ const Pawn14 = new Pawn(5, 6, team.opponent, `${team.opponent}Pawn8`);
 const Pawn15 = new Pawn(6, 6, team.opponent, `${team.opponent}Pawn8`);
 const Pawn16 = new Pawn(7, 6, team.opponent, `${team.opponent}Pawn8`);
 
+const Rook1 = new Rook(0 , 0 , team.self, `${team.self}Rook1`)
+const Rook2 = new Rook(7 , 0 , team.self, `${team.self}Rook2`)
+
 const matrix = [
-  [0, 0, 0, 0, 0, 0, 0, 0],
+  [Rook1, 0, 0, 0, 0, 0, 0, Rook2],
   [Pawn1, Pawn2, Pawn3, Pawn4, Pawn5, Pawn6, Pawn7, Pawn8],
   [0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0],
@@ -105,6 +108,12 @@ function addListens() {
       let isTrue = allPreviewPostion.find((ele) => ele.y == y && ele.x == x);
       if (isTrue) {
         matrix[currentHighlight.y][currentHighlight.x].move(isTrue);
+        if (matrix[isTrue.y][isTrue.x]) {
+          const killingEle = matrix[isTrue.y][isTrue.x];
+          const img =
+            Board.children[isTrue.y].children[isTrue.x].firstElementChild;
+          Board.children[isTrue.y].children[isTrue.x].removeChild(img);
+        }
         matrix[isTrue.y][isTrue.x] =
           matrix[currentHighlight.y][currentHighlight.x];
         matrix[currentHighlight.y][currentHighlight.x] = 0;

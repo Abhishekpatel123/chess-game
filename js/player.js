@@ -15,6 +15,18 @@ class Pawn {
     console.log(this.type)
     console.log(matrix[this.position.y + 1][this.position.x], "tu");
     if(this.type === 0){
+      if (matrix[this.position.y + 1][this.position.x - 1] && matrix[this.position.y + 1][this.position.x - 1].type == 1) {
+        positions.push({
+          x : this.position.x - 1,
+          y : this.position.y + 1
+        })
+      }
+      if (matrix[this.position.y + 1][this.position.x + 1] && matrix[this.position.y + 1][this.position.x + 1].type == 1) {
+        positions.push({
+          x : this.position.x + 1,
+          y : this.position.y + 1
+        })
+      }
     if (!matrix[this.position.y + 1][this.position.x])
       positions.push({
         x: this.position.x,
@@ -28,6 +40,19 @@ class Pawn {
       });
     }
   }else{
+    if (matrix[this.position.y - 1][this.position.x - 1] && matrix[this.position.y - 1][this.position.x - 1].type == 0) {
+      positions.push({
+        x : this.position.x - 1,
+        y : this.position.y - 1
+      })
+    }
+    if (matrix[this.position.y - 1][this.position.x + 1] && matrix[this.position.y - 1][this.position.x + 1].type == 0) {
+      positions.push({
+        x : this.position.x + 1,
+        y : this.position.y - 1
+      })
+    }
+
     if (!matrix[this.position.y - 1][this.position.x])
       positions.push({
         x: this.position.x,
@@ -64,6 +89,75 @@ class Rook {
     this.position.x = x;
     this.position.y = y;
   }
+
+  showMoves(matrix) {
+    const positions = [];
+    console.log(this.type)
+    console.log(matrix[this.position.y + 1][this.position.x], "tu");
+    if(this.type === 0){
+      if (matrix[this.position.y + 1][this.position.x - 1] && matrix[this.position.y + 1][this.position.x - 1].type == 1) {
+        positions.push({
+          x : this.position.x - 1,
+          y : this.position.y + 1
+        })
+      }
+      if (matrix[this.position.y + 1][this.position.x + 1] && matrix[this.position.y + 1][this.position.x + 1].type == 1) {
+        positions.push({
+          x : this.position.x + 1,
+          y : this.position.y + 1
+        })
+      }
+    if (!matrix[this.position.y + 1][this.position.x])
+      for (let i = 0; i < array.length; i++) {
+        const element = array[i];
+        
+      }
+      positions.push({
+        x: this.position.x,
+        y: this.position.y + 1,
+      });
+
+    if (this.position.y == 1) {
+      positions.push({
+        x: this.position.x,
+        y: this.position.y + 2,
+      });
+    }
+  }else{
+    if (matrix[this.position.y - 1][this.position.x - 1] && matrix[this.position.y - 1][this.position.x - 1].type == 0) {
+      positions.push({
+        x : this.position.x - 1,
+        y : this.position.y - 1
+      })
+    }
+    if (matrix[this.position.y - 1][this.position.x + 1] && matrix[this.position.y - 1][this.position.x + 1].type == 0) {
+      positions.push({
+        x : this.position.x + 1,
+        y : this.position.y - 1
+      })
+    }
+
+    if (!matrix[this.position.y - 1][this.position.x])
+      positions.push({
+        x: this.position.x,
+        y: this.position.y - 1,
+      });
+
+    if (this.position.y == 6) {
+      positions.push({
+        x: this.position.x,
+        y: this.position.y - 2,
+      });
+    }
+  }
+    return positions;
+  }
+
+  move(pos) {
+    this.position.x = pos.x;
+    this.position.y = pos.y;
+  }
+
 }
 
 //camel
