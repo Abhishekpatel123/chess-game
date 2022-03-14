@@ -22,6 +22,9 @@ const Pawn16 = new Pawn(7, 6, team.opponent, `${team.opponent}Pawn8`);
 const Rook1 = new Rook(0 , 0 , team.self, `${team.self}Rook1`)
 const Rook2 = new Rook(7 , 0 , team.self, `${team.self}Rook2`)
 
+const Rook3 = new Rook(0 , 7 , team.opponent, `${team.opponent}Rook3`)
+const Rook4 = new Rook(7 , 7 , team.opponent, `${team.opponent}Rook4`)
+
 const matrix = [
   [Rook1, 0, 0, 0, 0, 0, 0, Rook2],
   [Pawn1, Pawn2, Pawn3, Pawn4, Pawn5, Pawn6, Pawn7, Pawn8],
@@ -30,7 +33,7 @@ const matrix = [
   [0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0],
   [Pawn9, Pawn10, Pawn11, Pawn12, Pawn13, Pawn14, Pawn15, Pawn16],
-  [0, 0, 0, 0, 0, 0, 0, 0],
+  [Rook3, 0, 0, 0, 0, 0, 0, Rook4],
 ];
 
 function draw() {

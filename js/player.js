@@ -12,60 +12,72 @@ class Pawn {
 
   showMoves(matrix) {
     const positions = [];
-    console.log(this.type)
+    console.log(this.type);
     console.log(matrix[this.position.y + 1][this.position.x], "tu");
-    if(this.type === 0){
-      if (matrix[this.position.y + 1][this.position.x - 1] && matrix[this.position.y + 1][this.position.x - 1].type == 1) {
+    if (this.type === 0) {
+      if (
+        matrix[this.position.y + 1][this.position.x - 1] &&
+        matrix[this.position.y + 1][this.position.x - 1].type == 1
+      ) {
         positions.push({
-          x : this.position.x - 1,
-          y : this.position.y + 1
-        })
+          x: this.position.x - 1,
+          y: this.position.y + 1,
+        });
       }
-      if (matrix[this.position.y + 1][this.position.x + 1] && matrix[this.position.y + 1][this.position.x + 1].type == 1) {
+      if (
+        matrix[this.position.y + 1][this.position.x + 1] &&
+        matrix[this.position.y + 1][this.position.x + 1].type == 1
+      ) {
         positions.push({
-          x : this.position.x + 1,
-          y : this.position.y + 1
-        })
+          x: this.position.x + 1,
+          y: this.position.y + 1,
+        });
       }
-    if (!matrix[this.position.y + 1][this.position.x])
-      positions.push({
-        x: this.position.x,
-        y: this.position.y + 1,
-      });
+      if (!matrix[this.position.y + 1][this.position.x])
+        positions.push({
+          x: this.position.x,
+          y: this.position.y + 1,
+        });
 
-    if (this.position.y == 1) {
-      positions.push({
-        x: this.position.x,
-        y: this.position.y + 2,
-      });
-    }
-  }else{
-    if (matrix[this.position.y - 1][this.position.x - 1] && matrix[this.position.y - 1][this.position.x - 1].type == 0) {
-      positions.push({
-        x : this.position.x - 1,
-        y : this.position.y - 1
-      })
-    }
-    if (matrix[this.position.y - 1][this.position.x + 1] && matrix[this.position.y - 1][this.position.x + 1].type == 0) {
-      positions.push({
-        x : this.position.x + 1,
-        y : this.position.y - 1
-      })
-    }
+      if (this.position.y == 1) {
+        positions.push({
+          x: this.position.x,
+          y: this.position.y + 2,
+        });
+      }
+    } else {
+      if (
+        matrix[this.position.y - 1][this.position.x - 1] &&
+        matrix[this.position.y - 1][this.position.x - 1].type == 0
+      ) {
+        positions.push({
+          x: this.position.x - 1,
+          y: this.position.y - 1,
+        });
+      }
+      if (
+        matrix[this.position.y - 1][this.position.x + 1] &&
+        matrix[this.position.y - 1][this.position.x + 1].type == 0
+      ) {
+        positions.push({
+          x: this.position.x + 1,
+          y: this.position.y - 1,
+        });
+      }
 
-    if (!matrix[this.position.y - 1][this.position.x])
-      positions.push({
-        x: this.position.x,
-        y: this.position.y - 1,
-      });
+      if (!matrix[this.position.y - 1][this.position.x])
+        positions.push({
+          x: this.position.x,
+          y: this.position.y - 1,
+        });
 
-    if (this.position.y == 6) {
-      positions.push({
-        x: this.position.x,
-        y: this.position.y - 2,
-      });
+      if (this.position.y == 6) {
+        positions.push({
+          x: this.position.x,
+          y: this.position.y - 2,
+        });
+      }
     }
-  }
     return positions;
   }
 
@@ -92,64 +104,236 @@ class Rook {
 
   showMoves(matrix) {
     const positions = [];
-    console.log(this.type)
-    console.log(matrix[this.position.y + 1][this.position.x], "tu");
-    if(this.type === 0){
-      if (matrix[this.position.y + 1][this.position.x - 1] && matrix[this.position.y + 1][this.position.x - 1].type == 1) {
-        positions.push({
-          x : this.position.x - 1,
-          y : this.position.y + 1
-        })
+    console.log(this.type);
+    // console.log(matrix[this.position.y + 1][this.position.x], "tu");
+    if (this.type == 0) {
+      // if (
+      //   matrix[this.position.y + 1][this.position.x - 1] &&
+      //   matrix[this.position.y + 1][this.position.x - 1].type == 1
+      // ) {
+      //   positions.push({
+      //     x: this.position.x - 1,
+      //     y: this.position.y + 1,
+      //   });
+      // }
+      // if (
+      //   matrix[this.position.y + 1][this.position.x + 1] &&
+      //   matrix[this.position.y + 1][this.position.x + 1].type == 1
+      // ) {
+      //   positions.push({
+      //     x: this.position.x + 1,
+      //     y: this.position.y + 1,
+      //   });
+      // }
+      let isYou = false;
+      let i = this.position.y + 1;
+      while (!isYou && i < 8) {
+        if (matrix[i][this.position.x]) {
+          if (matrix[i][this.position.x].type == 1) {
+            positions.push({
+              x: this.position.x,
+              y: i,
+            });
+          }
+          isYou = true;
+        } else {
+          positions.push({
+            x: this.position.x,
+            y: i,
+          });
+          i++;
+        }
       }
-      if (matrix[this.position.y + 1][this.position.x + 1] && matrix[this.position.y + 1][this.position.x + 1].type == 1) {
-        positions.push({
-          x : this.position.x + 1,
-          y : this.position.y + 1
-        })
+      isYou = false;
+
+      i = this.position.y - 1;
+      while (!isYou && i >= 0) {
+        if (matrix[i][this.position.x]) {
+          if (matrix[i][this.position.x].type == 1) {
+            positions.push({
+              x: this.position.x,
+              y: i,
+            });
+          }
+          isYou = true;
+        } else {
+          positions.push({
+            x: this.position.x,
+            y: i,
+          });
+          i--;
+        }
       }
-    if (!matrix[this.position.y + 1][this.position.x])
-      for (let i = 0; i < array.length; i++) {
-        const element = array[i];
-        
+
+      isYou = false;
+
+      i = this.position.x + 1;
+      while (!isYou && i < 8) {
+        if (matrix[this.position.y][i]) {
+          if (matrix[this.position.y][i].type == 1) {
+            positions.push({
+              x: i,
+              y: this.position.y,
+            });
+          }
+          isYou = true;
+        } else {
+          positions.push({
+            x: i,
+            y: this.position.y,
+          });
+          i++;
+        }
       }
-      positions.push({
-        x: this.position.x,
-        y: this.position.y + 1,
-      });
 
-    if (this.position.y == 1) {
-      positions.push({
-        x: this.position.x,
-        y: this.position.y + 2,
-      });
-    }
-  }else{
-    if (matrix[this.position.y - 1][this.position.x - 1] && matrix[this.position.y - 1][this.position.x - 1].type == 0) {
-      positions.push({
-        x : this.position.x - 1,
-        y : this.position.y - 1
-      })
-    }
-    if (matrix[this.position.y - 1][this.position.x + 1] && matrix[this.position.y - 1][this.position.x + 1].type == 0) {
-      positions.push({
-        x : this.position.x + 1,
-        y : this.position.y - 1
-      })
-    }
+      isYou = false;
 
-    if (!matrix[this.position.y - 1][this.position.x])
-      positions.push({
-        x: this.position.x,
-        y: this.position.y - 1,
-      });
+      i = this.position.x - 1;
+      while (!isYou && i >= 0) {
+        if (matrix[this.position.y][i]) {
+          if (matrix[this.position.y][i].type == 1) {
+            positions.push({
+              x: i,
+              y: this.position.y,
+            });
+          }
+          isYou = true;
+        } else {
+          positions.push({
+            x: i,
+            y: this.position.y,
+          });
+          i--;
+        }
+      }
+      isYou = false;
+      // positions.push({
+      //   x: this.position.x,
+      //   y: this.position.y + 1,
+      // });
 
-    if (this.position.y == 6) {
-      positions.push({
-        x: this.position.x,
-        y: this.position.y - 2,
-      });
+      // if (this.position.y == 1) {
+      //   positions.push({
+      //     x: this.position.x,
+      //     y: this.position.y + 2,
+      //   });
+      // }
+    } else {
+      // if (
+      //   matrix[this.position.y - 1][this.position.x - 1] &&
+      //   matrix[this.position.y - 1][this.position.x - 1].type == 0
+      // ) {
+      //   positions.push({
+      //     x: this.position.x - 1,
+      //     y: this.position.y - 1,
+      //   });
+      // }
+      // if (
+      //   matrix[this.position.y - 1][this.position.x + 1] &&
+      //   matrix[this.position.y - 1][this.position.x + 1].type == 0
+      // ) {
+      //   positions.push({
+      //     x: this.position.x + 1,
+      //     y: this.position.y - 1,
+      //   });
+      // }
+
+      let isYou = false;
+      let i = this.position.y + 1;
+      while (!isYou && i < 8) {
+        if (matrix[i][this.position.x]) {
+          if (matrix[i][this.position.x].type == 0) {
+            positions.push({
+              x: this.position.x,
+              y: i,
+            });
+          }
+          isYou = true;
+        } else {
+          positions.push({
+            x: this.position.x,
+            y: i,
+          });
+          i++;
+        }
+      }
+      isYou = false;
+
+      i = this.position.y - 1;
+      while (!isYou && i >= 0) {
+        if (matrix[i][this.position.x]) {
+          if (matrix[i][this.position.x].type == 0) {
+            positions.push({
+              x: this.position.x,
+              y: i,
+            });
+          }
+          isYou = true;
+        } else {
+          positions.push({
+            x: this.position.x,
+            y: i,
+          });
+          i--;
+        }
+      }
+
+      isYou = false;
+
+      i = this.position.x + 1;
+      while (!isYou && i < 8) {
+        if (matrix[this.position.y][i]) {
+          if (matrix[this.position.y][i].type == 0) {
+            positions.push({
+              x: i,
+              y: this.position.y,
+            });
+          }
+          isYou = true;
+        } else {
+          positions.push({
+            x: i,
+            y: this.position.y,
+          });
+          i++;
+        }
+      }
+
+      isYou = false;
+
+      i = this.position.x - 1;
+      while (!isYou && i >= 0) {
+        if (matrix[this.position.y][i]) {
+          if (matrix[this.position.y][i].type == 0) {
+            positions.push({
+              x: i,
+              y: this.position.y,
+            });
+          }
+          isYou = true;
+        } else {
+          positions.push({
+            x: i,
+            y: this.position.y,
+          });
+          i--;
+        }
+      }
+      isYou = false;
+
+
+      //   positions.push({
+      //     x: this.position.x,
+      //     y: this.position.y - 1,
+      //   });
+
+      // if (this.position.y == 6) {
+      //   positions.push({
+      //     x: this.position.x,
+      //     y: this.position.y - 2,
+      //   });
+      // }
     }
-  }
     return positions;
   }
 
@@ -157,7 +341,6 @@ class Rook {
     this.position.x = pos.x;
     this.position.y = pos.y;
   }
-
 }
 
 //camel
