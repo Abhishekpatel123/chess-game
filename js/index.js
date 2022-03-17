@@ -25,15 +25,34 @@ const Rook2 = new Rook(7 , 0 , team.self, `${team.self}Rook2`)
 const Rook3 = new Rook(0 , 7 , team.opponent, `${team.opponent}Rook3`)
 const Rook4 = new Rook(7 , 7 , team.opponent, `${team.opponent}Rook4`)
 
+const Knight1 = new Knight(1 , 0 , team.self, `${team.self}Knight1`)
+const Knight2 = new Knight(6 , 0 , team.self, `${team.self}Knight2`)
+
+const Knight3 = new Knight(1 , 7 , team.opponent, `${team.opponent}Knight3`)
+const Knight4 = new Knight(6 , 7 , team.opponent, `${team.opponent}Knight4`)
+
+const Bishop1 = new Bishop(2 , 0 , team.self, `${team.self}Bishop`)
+const Bishop2 = new Bishop(5 , 0 , team.self, `${team.self}Bishop`)
+
+const Bishop3 = new Bishop(2 , 7 , team.opponent, `${team.opponent}Bishop`)
+const Bishop4 = new Bishop(5 , 7 , team.opponent, `${team.opponent}Bishop`)
+
+const Queen1 = new Queen(4 , 0 , team.self, `${team.self}Queen`)
+
+const Queen2 = new Queen(4 , 7 , team.opponent, `${team.opponent}Queen`)
+
+const King1 = new King(3 , 0 , team.self, `${team.self}King`)
+const King2 = new King(3 , 7 , team.opponent, `${team.opponent}King`)
+
 const matrix = [
-  [Rook1, 0, 0, 0, 0, 0, 0, Rook2],
+  [Rook1, Knight1, Bishop1, King1, Queen1, Bishop2, Knight2, Rook2],
   [Pawn1, Pawn2, Pawn3, Pawn4, Pawn5, Pawn6, Pawn7, Pawn8],
   [0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0],
   [Pawn9, Pawn10, Pawn11, Pawn12, Pawn13, Pawn14, Pawn15, Pawn16],
-  [Rook3, 0, 0, 0, 0, 0, 0, Rook4],
+  [Rook3, Knight3, Bishop3, King2, Queen2, Bishop4, Knight4, Rook4],
 ];
 
 function draw() {
