@@ -87,6 +87,369 @@ class Pawn {
   }
 }
 
+function EdgeMove(matrix) {
+  const positions = [];
+  console.log(this.type);
+  if (this.type == 0) {
+    let isYou = false;
+    let i = this.position.y + 1;
+    while (!isYou && i < 8) {
+      if (matrix[i][this.position.x]) {
+        if (matrix[i][this.position.x].type == 1) {
+          positions.push({
+            x: this.position.x,
+            y: i,
+          });
+        }
+        isYou = true;
+      } else {
+        positions.push({
+          x: this.position.x,
+          y: i,
+        });
+        i++;
+      }
+    }
+    isYou = false;
+
+    i = this.position.y - 1;
+    while (!isYou && i >= 0) {
+      if (matrix[i][this.position.x]) {
+        if (matrix[i][this.position.x].type == 1) {
+          positions.push({
+            x: this.position.x,
+            y: i,
+          });
+        }
+        isYou = true;
+      } else {
+        positions.push({
+          x: this.position.x,
+          y: i,
+        });
+        i--;
+      }
+    }
+
+    isYou = false;
+
+    i = this.position.x + 1;
+    while (!isYou && i < 8) {
+      if (matrix[this.position.y][i]) {
+        if (matrix[this.position.y][i].type == 1) {
+          positions.push({
+            x: i,
+            y: this.position.y,
+          });
+        }
+        isYou = true;
+      } else {
+        positions.push({
+          x: i,
+          y: this.position.y,
+        });
+        i++;
+      }
+    }
+
+    isYou = false;
+
+    i = this.position.x - 1;
+    while (!isYou && i >= 0) {
+      if (matrix[this.position.y][i]) {
+        if (matrix[this.position.y][i].type == 1) {
+          positions.push({
+            x: i,
+            y: this.position.y,
+          });
+        }
+        isYou = true;
+      } else {
+        positions.push({
+          x: i,
+          y: this.position.y,
+        });
+        i--;
+      }
+    }
+    isYou = false;
+  } else {
+    let isYou = false;
+    let i = this.position.y + 1;
+    while (!isYou && i < 8) {
+      if (matrix[i][this.position.x]) {
+        if (matrix[i][this.position.x].type == 0) {
+          positions.push({
+            x: this.position.x,
+            y: i,
+          });
+        }
+        isYou = true;
+      } else {
+        positions.push({
+          x: this.position.x,
+          y: i,
+        });
+        i++;
+      }
+    }
+    isYou = false;
+
+    i = this.position.y - 1;
+    while (!isYou && i >= 0) {
+      if (matrix[i][this.position.x]) {
+        if (matrix[i][this.position.x].type == 0) {
+          positions.push({
+            x: this.position.x,
+            y: i,
+          });
+        }
+        isYou = true;
+      } else {
+        positions.push({
+          x: this.position.x,
+          y: i,
+        });
+        i--;
+      }
+    }
+
+    isYou = false;
+
+    i = this.position.x + 1;
+    while (!isYou && i < 8) {
+      if (matrix[this.position.y][i]) {
+        if (matrix[this.position.y][i].type == 0) {
+          positions.push({
+            x: i,
+            y: this.position.y,
+          });
+        }
+        isYou = true;
+      } else {
+        positions.push({
+          x: i,
+          y: this.position.y,
+        });
+        i++;
+      }
+    }
+
+    isYou = false;
+
+    i = this.position.x - 1;
+    while (!isYou && i >= 0) {
+      if (matrix[this.position.y][i]) {
+        if (matrix[this.position.y][i].type == 0) {
+          positions.push({
+            x: i,
+            y: this.position.y,
+          });
+        }
+        isYou = true;
+      } else {
+        positions.push({
+          x: i,
+          y: this.position.y,
+        });
+        i--;
+      }
+    }
+    isYou = false;
+  }
+  return positions;
+}
+
+function DiagonalMove(matrix) {
+  const positions = [];
+  console.log(this.type);
+  if (this.type == 0) {
+    let isYou = false;
+    let i = this.position.y + 1;
+    let j = this.position.x + 1;
+    while (!isYou && i < 8 && j < 8) {
+      if (matrix[i][j]) {
+        if (matrix[i][j].type == 1) {
+          positions.push({
+            x: j,
+            y: i,
+          });
+        }
+        isYou = true;
+      } else {
+        positions.push({
+          x: j,
+          y: i,
+        });
+        i++;
+        j++;
+      }
+    }
+    isYou = false;
+
+    i = this.position.y - 1;
+    j = this.position.x - 1;
+    while (!isYou && i >= 0 && j >= 0) {
+      if (matrix[i][j]) {
+        if (matrix[i][j].type == 1) {
+          positions.push({
+            x: j,
+            y: i,
+          });
+        }
+        isYou = true;
+      } else {
+        positions.push({
+          x: j,
+          y: i,
+        });
+        i--;
+        j--;
+      }
+    }
+
+    isYou = false;
+
+    i = this.position.y + 1;
+    j = this.position.x - 1;
+    while (!isYou && i < 8 && j >= 0) {
+      if (matrix[i][j]) {
+        if (matrix[i][j].type == 1) {
+          positions.push({
+            x: j,
+            y: i,
+          });
+        }
+        isYou = true;
+      } else {
+        positions.push({
+          x: j,
+          y: i,
+        });
+        i++;
+        j--;
+      }
+    }
+    isYou = false;
+
+    i = this.position.y - 1;
+    j = this.position.x + 1;
+    while (!isYou && i >= 0 && j < 8) {
+      if (matrix[i][j]) {
+        if (matrix[i][j].type == 1) {
+          positions.push({
+            x: j,
+            y: i,
+          });
+        }
+        isYou = true;
+      } else {
+        positions.push({
+          x: j,
+          y: i,
+        });
+        i--;
+        j++;
+      }
+    }
+
+    isYou = false;
+  } else {
+    let isYou = false;
+    let i = this.position.y + 1;
+    let j = this.position.x + 1;
+    while (!isYou && i < 8 && j < 8) {
+      if (matrix[i][j]) {
+        if (matrix[i][j].type == 0) {
+          positions.push({
+            x: j,
+            y: i,
+          });
+        }
+        isYou = true;
+      } else {
+        positions.push({
+          x: j,
+          y: i,
+        });
+        i++;
+        j++;
+      }
+    }
+    isYou = false;
+
+    i = this.position.y - 1;
+    j = this.position.x - 1;
+    while (!isYou && i >= 0 && j >= 0) {
+      if (matrix[i][j]) {
+        if (matrix[i][j].type == 0) {
+          positions.push({
+            x: j,
+            y: i,
+          });
+        }
+        isYou = true;
+      } else {
+        positions.push({
+          x: j,
+          y: i,
+        });
+        i--;
+        j--;
+      }
+    }
+
+    isYou = false;
+
+    i = this.position.y + 1;
+    j = this.position.x - 1;
+    while (!isYou && i < 8 && j >= 0) {
+      if (matrix[i][j]) {
+        if (matrix[i][j].type == 0) {
+          positions.push({
+            x: j,
+            y: i,
+          });
+        }
+        isYou = true;
+      } else {
+        positions.push({
+          x: j,
+          y: i,
+        });
+        i++;
+        j--;
+      }
+    }
+    isYou = false;
+
+    i = this.position.y - 1;
+    j = this.position.x + 1;
+    while (!isYou && i >= 0 && j < 8) {
+      if (matrix[i][j]) {
+        if (matrix[i][j].type == 0) {
+          positions.push({
+            x: j,
+            y: i,
+          });
+        }
+        isYou = true;
+      } else {
+        positions.push({
+          x: j,
+          y: i,
+        });
+        i--;
+        j++;
+      }
+    }
+
+    isYou = false;
+  }
+  return positions;
+}
+
+
 //hathi
 class Rook {
   position = {
@@ -103,176 +466,7 @@ class Rook {
   }
 
   showMoves(matrix) {
-    const positions = [];
-    console.log(this.type);
-    if (this.type == 0) {
-      let isYou = false;
-      let i = this.position.y + 1;
-      while (!isYou && i < 8) {
-        if (matrix[i][this.position.x]) {
-          if (matrix[i][this.position.x].type == 1) {
-            positions.push({
-              x: this.position.x,
-              y: i,
-            });
-          }
-          isYou = true;
-        } else {
-          positions.push({
-            x: this.position.x,
-            y: i,
-          });
-          i++;
-        }
-      }
-      isYou = false;
-
-      i = this.position.y - 1;
-      while (!isYou && i >= 0) {
-        if (matrix[i][this.position.x]) {
-          if (matrix[i][this.position.x].type == 1) {
-            positions.push({
-              x: this.position.x,
-              y: i,
-            });
-          }
-          isYou = true;
-        } else {
-          positions.push({
-            x: this.position.x,
-            y: i,
-          });
-          i--;
-        }
-      }
-
-      isYou = false;
-
-      i = this.position.x + 1;
-      while (!isYou && i < 8) {
-        if (matrix[this.position.y][i]) {
-          if (matrix[this.position.y][i].type == 1) {
-            positions.push({
-              x: i,
-              y: this.position.y,
-            });
-          }
-          isYou = true;
-        } else {
-          positions.push({
-            x: i,
-            y: this.position.y,
-          });
-          i++;
-        }
-      }
-
-      isYou = false;
-
-      i = this.position.x - 1;
-      while (!isYou && i >= 0) {
-        if (matrix[this.position.y][i]) {
-          if (matrix[this.position.y][i].type == 1) {
-            positions.push({
-              x: i,
-              y: this.position.y,
-            });
-          }
-          isYou = true;
-        } else {
-          positions.push({
-            x: i,
-            y: this.position.y,
-          });
-          i--;
-        }
-      }
-      isYou = false;
-    } else {
-      let isYou = false;
-      let i = this.position.y + 1;
-      while (!isYou && i < 8) {
-        if (matrix[i][this.position.x]) {
-          if (matrix[i][this.position.x].type == 0) {
-            positions.push({
-              x: this.position.x,
-              y: i,
-            });
-          }
-          isYou = true;
-        } else {
-          positions.push({
-            x: this.position.x,
-            y: i,
-          });
-          i++;
-        }
-      }
-      isYou = false;
-
-      i = this.position.y - 1;
-      while (!isYou && i >= 0) {
-        if (matrix[i][this.position.x]) {
-          if (matrix[i][this.position.x].type == 0) {
-            positions.push({
-              x: this.position.x,
-              y: i,
-            });
-          }
-          isYou = true;
-        } else {
-          positions.push({
-            x: this.position.x,
-            y: i,
-          });
-          i--;
-        }
-      }
-
-      isYou = false;
-
-      i = this.position.x + 1;
-      while (!isYou && i < 8) {
-        if (matrix[this.position.y][i]) {
-          if (matrix[this.position.y][i].type == 0) {
-            positions.push({
-              x: i,
-              y: this.position.y,
-            });
-          }
-          isYou = true;
-        } else {
-          positions.push({
-            x: i,
-            y: this.position.y,
-          });
-          i++;
-        }
-      }
-
-      isYou = false;
-
-      i = this.position.x - 1;
-      while (!isYou && i >= 0) {
-        if (matrix[this.position.y][i]) {
-          if (matrix[this.position.y][i].type == 0) {
-            positions.push({
-              x: i,
-              y: this.position.y,
-            });
-          }
-          isYou = true;
-        } else {
-          positions.push({
-            x: i,
-            y: this.position.y,
-          });
-          i--;
-        }
-      }
-      isYou = false;
-    }
-    return positions;
+    return EdgeMove.call(this, matrix);
   }
 
   move(pos) {
@@ -297,192 +491,7 @@ class Bishop {
   }
 
   showMoves(matrix) {
-    const positions = [];
-    console.log(this.type);
-    if (this.type == 0) {
-      let isYou = false;
-      let i = this.position.y + 1;
-      let j = this.position.x + 1;
-      while (!isYou && i < 8 && j < 8) {
-        if (matrix[i][j]) {
-          if (matrix[i][j].type == 1) {
-            positions.push({
-              x: j,
-              y: i,
-            });
-          }
-          isYou = true;
-        } else {
-          positions.push({
-            x: j,
-            y: i,
-          });
-          i++;
-          j++;
-        }
-      }
-      isYou = false;
-
-      i = this.position.y - 1;
-      j = this.position.x - 1;
-      while (!isYou && i >= 0 && j >= 0) {
-        if (matrix[i][j]) {
-          if (matrix[i][j].type == 1) {
-            positions.push({
-              x: j,
-              y: i,
-            });
-          }
-          isYou = true;
-        } else {
-          positions.push({
-            x: j,
-            y: i,
-          });
-          i--;
-          j--;
-        }
-      }
-
-      isYou = false;
-
-      i = this.position.y + 1;
-      j = this.position.x - 1;
-      while (!isYou && i < 8 && j >= 0) {
-        if (matrix[i][j]) {
-          if (matrix[i][j].type == 1) {
-            positions.push({
-              x: j,
-              y: i,
-            });
-          }
-          isYou = true;
-        } else {
-          positions.push({
-            x: j,
-            y: i,
-          });
-          i++;
-          j--;
-        }
-      }
-      isYou = false;
-
-      i = this.position.y - 1;
-      j = this.position.x + 1;
-      while (!isYou && i >= 0 && j < 8) {
-        if (matrix[i][j]) {
-          if (matrix[i][j].type == 1) {
-            positions.push({
-              x: j,
-              y: i,
-            });
-          }
-          isYou = true;
-        } else {
-          positions.push({
-            x: j,
-            y: i,
-          });
-          i--;
-          j++;
-        }
-      }
-
-      isYou = false;
-    } else {
-      let isYou = false;
-      let i = this.position.y + 1;
-      let j = this.position.x + 1;
-      while (!isYou && i < 8 && j < 8) {
-        if (matrix[i][j]) {
-          if (matrix[i][j].type == 0) {
-            positions.push({
-              x: j,
-              y: i,
-            });
-          }
-          isYou = true;
-        } else {
-          positions.push({
-            x: j,
-            y: i,
-          });
-          i++;
-          j++;
-        }
-      }
-      isYou = false;
-
-      i = this.position.y - 1;
-      j = this.position.x - 1;
-      while (!isYou && i >= 0 && j >= 0) {
-        if (matrix[i][j]) {
-          if (matrix[i][j].type == 0) {
-            positions.push({
-              x: j,
-              y: i,
-            });
-          }
-          isYou = true;
-        } else {
-          positions.push({
-            x: j,
-            y: i,
-          });
-          i--;
-          j--;
-        }
-      }
-
-      isYou = false;
-
-      i = this.position.y + 1;
-      j = this.position.x - 1;
-      while (!isYou && i < 8 && j >= 0) {
-        if (matrix[i][j]) {
-          if (matrix[i][j].type == 0) {
-            positions.push({
-              x: j,
-              y: i,
-            });
-          }
-          isYou = true;
-        } else {
-          positions.push({
-            x: j,
-            y: i,
-          });
-          i++;
-          j--;
-        }
-      }
-      isYou = false;
-
-      i = this.position.y - 1;
-      j = this.position.x + 1;
-      while (!isYou && i >= 0 && j < 8) {
-        if (matrix[i][j]) {
-          if (matrix[i][j].type == 0) {
-            positions.push({
-              x: j,
-              y: i,
-            });
-          }
-          isYou = true;
-        } else {
-          positions.push({
-            x: j,
-            y: i,
-          });
-          i--;
-          j++;
-        }
-      }
-
-      isYou = false;
-    }
-    return positions;
+    return DiagonalMove.call(this, matrix);
   }
 
   move(pos) {
@@ -516,7 +525,7 @@ class King {
         i = this.position.x + count - 1;
         for (let xcount = 0; xcount < 3; xcount++) {
           j = this.position.y + xcount - 1;
-          if (j != this.position.y && i != this.position.x) {
+          if (!(j == this.position.y && i == this.position.x)) {
             if (i < 8 && j < 8 && i >= 0 && j >= 0) {
               if (matrix[j][i]) {
                 if (matrix[j][i].type == 1) {
@@ -536,31 +545,31 @@ class King {
         }
       }
     } else {
-      let j = this.position.y - 1;
-      let i = this.position.x - 1;
+      let j = this.position.y;
+      let i = this.position.x;
 
       for (let count = 0; count < 3; count++) {
+        i = this.position.x + count - 1;
         for (let xcount = 0; xcount < 3; xcount++) {
-          if (j !== this.position.y && i !== this.position.x) {
+          j = this.position.y + xcount - 1;
+          if (!(j == this.position.y && i == this.position.x)) {
             if (i < 8 && j < 8 && i >= 0 && j >= 0) {
               if (matrix[j][i]) {
-                if (matrix[i][j].type == 1) {
+                if (matrix[j][i].type == 0) {
                   positions.push({
-                    x: j,
-                    y: i,
+                    x: i,
+                    y: j,
                   });
                 }
               } else {
                 positions.push({
-                  x: j,
-                  y: i,
+                  x: i,
+                  y: j,
                 });
               }
             }
           }
-          j = this.position.x + xcount;
         }
-        i = this.position.y + count;
       }
     }
 
@@ -835,4 +844,14 @@ class Queen {
     this.position.x = x;
     this.position.y = y;
   }
+
+  showMoves(matrix) {
+    return [...EdgeMove.call(this , matrix) , ...DiagonalMove.call(this , matrix)]
+  }
+
+  move(pos) {
+    this.position.x = pos.x;
+    this.position.y = pos.y;
+  }
+
 }

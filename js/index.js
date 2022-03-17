@@ -111,6 +111,10 @@ function removeShowPosition() {
   allPreviewPostion = [];
 }
 
+function rotateBoard(){
+Board.classList.toggle('rotate')
+}
+
 function addListens() {
   const cells = document.querySelectorAll(".board>div>div");
   cells.forEach((cell) => {
@@ -135,11 +139,14 @@ function addListens() {
           const img =
             Board.children[isTrue.y].children[isTrue.x].firstElementChild;
           Board.children[isTrue.y].children[isTrue.x].removeChild(img);
+          addKilled(killingEle)
+
         }
         matrix[isTrue.y][isTrue.x] =
           matrix[currentHighlight.y][currentHighlight.x];
         matrix[currentHighlight.y][currentHighlight.x] = 0;
         turn = !turn;
+        rotateBoard();
         draw();
         removeShowPosition();
         return;
@@ -153,3 +160,18 @@ function addListens() {
 }
 
 addListens();
+
+
+function addKilled(killingEle){
+  
+  const _kill = document.createElement('div');
+  _kill.classList.add('killed');
+  if(killingEle.type){
+    _kill.innerHTML = `<img src="${killingEle.image}" style="filter: grayscale(1);" alt="">`;
+    document.querySelector('.self>.killed-box').appendChild(_kill);
+  } 
+  else{
+  _kill.innerHTML = `<img src="${killingEle.image}"  alt="">`;
+    document.querySelector('.opponent>.killed-box').appendChild(_kill);
+  }
+  }
